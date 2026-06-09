@@ -1,0 +1,15 @@
+Assignments --->,Sarah Chen,Marcus Rodriguez,Priya Patel,James Sullivan
+Use Case ID --->,1,2,3,4
+Use Case --->,Spatial Intelligence & Monitoring,Behavioral Analytics & Prediction,Autonomous Service Dispatch,Infrastructure Command & Control
+Multi-Camera 3D Scene Reconstruction,9 - System Qualification,8 - System Validation,7 - System Demonstration,9 - System Qualification
+Digital Twin Generation,10 - System Test,7 - System Demonstration,8 - System Validation,10 - System Test
+Pedestrian Density Heatmapping,11 - System Operation,12 - System Proven,9 - System Qualification,10 - System Test
+Movement Pattern Correlation,8 - System Validation,10 - System Test,8 - System Validation,9 - System Qualification
+Transaction Pattern Analysis,6 - System Integration,9 - System Qualification,5 - Component Validation,7 - System Demonstration
+Proximity Event Logging,7 - System Demonstration,10 - System Test,6 - System Integration,6 - System Integration
+Emergency Drone Deployment,5 - Component Validation,6 - System Integration,9 - System Qualification,7 - System Demonstration
+Patrol Route Optimization,6 - System Integration,7 - System Demonstration,10 - System Test,8 - System Validation
+Automated Debris Collection,5 - Component Validation,4 - Component Testing,8 - System Validation,9 - System Qualification
+Cross-Utility Resource Balancing,9 - System Qualification,8 - System Validation,9 - System Qualification,11 - System Operation
+Fleet Traffic Coordination,10 - System Test,9 - System Qualification,11 - System Operation,10 - System Test
+Predictive Failure Detection,8 - System Validation,8 - System Validation,9 - System Qualification,11 - System Operation

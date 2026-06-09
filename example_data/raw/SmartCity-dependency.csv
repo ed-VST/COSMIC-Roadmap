@@ -1,0 +1,15 @@
+Assignments --->,Sarah Chen,Marcus Rodriguez,Priya Patel,James Sullivan
+Use Case ID --->,1,2,3,4
+Use Case --->,Spatial Intelligence & Monitoring,Behavioral Analytics & Prediction,Autonomous Service Dispatch,Infrastructure Command & Control
+Multi-Camera 3D Scene Reconstruction,1.0 - Use Case Critical,0.7 - Medium,0.6 - Medium,0.8 - High
+Digital Twin Generation,1.0 - Use Case Critical,0.5 - Medium,0.7 - Medium,0.9 - High
+Pedestrian Density Heatmapping,0.9 - High,1.0 - Use Case Critical,0.6 - Medium,0.7 - Medium
+Movement Pattern Correlation,0.8 - High,1.0 - Use Case Critical,0.7 - Medium,0.8 - High
+Transaction Pattern Analysis,0.5 - Medium,1.0 - Use Case Critical,0.4 - Low,0.6 - Medium
+Proximity Event Logging,0.6 - Medium,1.0 - Use Case Critical,0.5 - Medium,0.5 - Medium
+Emergency Drone Deployment,0.4 - Low,0.5 - Medium,1.0 - Use Case Critical,0.7 - Medium
+Patrol Route Optimization,0.6 - Medium,0.7 - Medium,1.0 - Use Case Critical,0.8 - High
+Automated Debris Collection,0.5 - Medium,0.4 - Low,0.9 - High,1.0 - Use Case Critical
+Cross-Utility Resource Balancing,0.7 - Medium,0.6 - Medium,0.8 - High,1.0 - Use Case Critical
+Fleet Traffic Coordination,0.8 - High,0.8 - High,1.0 - Use Case Critical,0.9 - High
+Predictive Failure Detection,0.7 - Medium,0.7 - Medium,0.8 - High,1.0 - Use Case Critical

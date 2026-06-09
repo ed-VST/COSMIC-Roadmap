@@ -209,6 +209,7 @@ __marimo__/
 # COSMIC Roadmap - Sensitive Data
 # CSV input files (may contain sensitive information)
 *.csv
+!example_data/raw/**
 data/raw/*.csv
 data/processed/*.csv
 Roadmap-dependency.csv
