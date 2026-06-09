@@ -16,21 +16,34 @@ import re
 
 def clean_value(value):
     """
-    Cleans a single value by extracting the leading number.
-    If the value is a string, it extracts the number.
-    If the value is NaN or cannot be converted, it returns NaN.
+    Cleans a single value to a float.
+
+    Supports:
+    - Plain numbers (int or float): returned as-is.
+    - Labeled strings like "13.0 - Description": leading number extracted.
+    - Plain number strings like "13.0": parsed directly.
+    - NaN / None / unparseable: returned as np.nan.
 
     Args:
-        value: Input value to clean (string, float, or NaN)
+        value: Input value to clean.
 
     Returns:
-        float: Cleaned numeric value or NaN
+        float: Cleaned numeric value or np.nan.
     """
+    if pd.isna(value):
+        return np.nan
+    if isinstance(value, (int, float)):
+        return float(value)
     if isinstance(value, str):
-        # Extract number from strings like "13.0-Advanced" -> 13.0
+        # Labeled format: "13.0 - Description"
         match = re.match(r"^\s*(\d+\.?\d*)\s*-", value)
         if match:
             return float(match.group(1))
+        # Plain number string
+        try:
+            return float(value.strip())
+        except ValueError:
+            return np.nan
     return np.nan
 
 

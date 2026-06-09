@@ -10,10 +10,13 @@ from me_roadmap.visualization.radar import plot_radar_charts
 from me_roadmap.visualization.sankey import plot_sankey, plot_all_sankey_types
 from me_roadmap.data_processing.combine import create_combined_roadmap
 from me_roadmap.data_processing.models import RoadmapData
+from me_roadmap.optimization.utils import load_optimization_data, reorder_multiple_arrays
+from me_roadmap.optimization.optimizer import optimize_schedule
+from me_roadmap.optimization.cost_model import roadmap_cost
 from typing import Dict, Tuple, Any
 from argparse import ArgumentParser
 from os import path
-import click 
+import click
 
 def main(dependency_filename: str = 'Roadmap-dependency.csv', 
          readiness_filename: str = 'Roadmap-readiness.csv',
@@ -82,10 +85,42 @@ def main(dependency_filename: str = 'Roadmap-dependency.csv',
 @click.option('--heatmap', is_flag=True, help='Show a heatmap of roadmap dependency levels.')
 @click.option('--radar', is_flag=True, help='Show radar charts of roadmap use_cases and capabilities.')
 @click.option('--sankey', is_flag=True, help='Show Sankey diagrams of roadmap flows.')
-@click.option('--sankey-type', default='use_case_to_capability', 
+@click.option('--sankey-type', default='use_case_to_capability',
               type=click.Choice(['use_case_to_capability', 'capability_to_readiness', 'use_case_to_readiness', 'dependency_flow', 'all']),
               help='Type of Sankey flow to visualize.')
-def cli_main(dependency, readiness, full, table, summary, capabilities, heatmap, radar, sankey, sankey_type):
+@click.option('--optimize', is_flag=True, help='Run simulated annealing to find the optimal mission execution order.')
+@click.option('--learning-rate', 'learning_rate_file', type=click.Path(exists=True), default=None,
+              help='Path to learning rate CSV. Required when --optimize is set.')
+@click.option('--utilization', 'utilization_file', type=click.Path(exists=True), default=None,
+              help='Path to utilization CSV. Required when --optimize is set.')
+@click.option('--n-iterations', 'n_iterations', default=5000, show_default=True, type=int,
+              help='Number of simulated annealing iterations.')
+def cli_main(dependency, readiness, full, table, summary, capabilities, heatmap, radar, sankey,
+             sankey_type, optimize, learning_rate_file, utilization_file, n_iterations):
+    if optimize:
+        if not learning_rate_file or not utilization_file:
+            raise click.UsageError('--optimize requires --learning-rate and --utilization')
+        print('\n🔍 Loading optimisation data...')
+        data = load_optimization_data(dependency, readiness, learning_rate_file, utilization_file)
+        print(f"   Missions   : {len(data['mission_names'])}")
+        print(f"   Capabilities: {len(data['capability_names'])}")
+        print('\n🚀 Running Simulated Annealing optimizer...')
+        best_order, best_cost = optimize_schedule(
+            data['readiness'],
+            data['dependency'],
+            data['learning_rate'],
+            data['utilization'],
+            n_iterations=n_iterations,
+        )
+        print('\n' + '=' * 60)
+        print('✅ Optimization Complete')
+        print(f'   Minimum Cost  : {best_cost:.4f}')
+        print('   Optimal Order :')
+        for rank, idx in enumerate(best_order, 1):
+            print(f'     {rank:>2}. {data["mission_names"][idx]}')
+        print('=' * 60)
+        return
+
     roadmap_data = create_combined_roadmap(dependency, readiness)
     if heatmap:
         plot_heatmap(roadmap_data)
