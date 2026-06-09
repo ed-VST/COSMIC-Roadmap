@@ -252,3 +252,4 @@ credentials.*
 plots/
 figures/
 charts/
+.~lock.*
