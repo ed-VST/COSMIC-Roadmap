@@ -253,3 +253,4 @@ plots/
 figures/
 charts/
 .~lock.*
+.~lock.* # Lock files created by LibreOffice and OpenOffice
